@@ -26,7 +26,7 @@ Citizen.CreateThread(function()
         end
     end
     while true do
-        Citizen.Wait(10)
+        Citizen.Wait(3)
         for h,v in pairs(Config.MissionBoards) do
         local playerCoords = GetEntityCoords(PlayerPedId())
         local dist = #(playerCoords - v.Coords)
@@ -190,7 +190,7 @@ else
     AddPointToGpsMultiRoute(SelectedMission.DeliverPosition)
     SetGpsMultiRouteRender(true)
     while MissionActive do
-        Citizen.Wait(10)
+        Citizen.Wait(3)
         local MyPosition = GetEntityCoords(MyCart)
         local Distance = #(MyPosition - SelectedMission.DeliverPosition)
         if Distance <= SelectedMission.EndMissionRadius then
@@ -199,6 +199,7 @@ else
             if TD == 0 then
                 VORPcore.NotifyRightTip(_U('LocationReached'), 5000)
                 TD = TD + 1
+                Citizen.Wait(250)
             end
             if Config.DrawMarker then
                 Citizen.InvokeNative(0x2A32FAA57B937173,0xEC032ADD,SelectedMission.DeliverPosition.x,SelectedMission.DeliverPosition.y + 1.0,SelectedMission.DeliverPosition.z+1.0,0,0,0,0,0,0,1.0,1.0,1.0,250,250,100,250,0, 0, 2, 0, 0, 0, 0) -- DRAW Marker
@@ -206,6 +207,7 @@ else
             if EndMissionPrompt:HasCompleted() then
                 DeleteVehicle(MyCart)
                 ClearGpsMultiRoute()
+                Citizen.Wait(500)
                 MissionActive = false
                 TD = 0
                 TriggerServerEvent('mms-cartmissions:server:EndMission',SelectedMission,DistanceToTravel)
