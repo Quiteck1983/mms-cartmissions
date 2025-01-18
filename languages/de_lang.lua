@@ -1,0 +1,18 @@
+Locales["de_lang"] = {
+    OpenBoardPrompt = 'Kutschenmissionen Öffnen',
+    OpenBoardPromptName = 'Kutschenmissionen',
+    BoardHeader = 'Kutschenmissionen',
+    BoardSubHeader = 'Kutschenmissionen',
+    CloseBoard = 'Schließen',
+    DeliverToo = 'Lieferung nach ',
+    EndDelivery = 'Lieferung Beenden',
+    DeliveryPromptGroup = 'Lieferung',
+    NoActiveMission = 'Keine Mission Aktiv.',
+    MissionAborted = 'Mission Abgebrochen.',
+    MissionAlreadyActive = 'Es ist bereits eine Mission Aktiv.',
+    DriveTo = 'Lieferung nach: ',
+    YouGotReward = 'Mission Erfolgreich du Verdienst $ ',
+    WHReward = ' Hat eine Mission abgeschlossen und bekommt $ ',
+    LocationReached = 'Du hast dein Ziel erreicht gebe die Kutsche ab.',
+    NeedMoreDistance = 'Lieferziel zu Nah am Startpunkt',
+}
