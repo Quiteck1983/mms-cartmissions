@@ -13,6 +13,7 @@
 # Changelog
 
 - 1.1.0 Initial Release Version
+- 1.1.1 Minor Bug Fixes
 
 # installation 
 

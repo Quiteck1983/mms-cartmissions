@@ -3,6 +3,7 @@ Locales["de_lang"] = {
     OpenBoardPromptName = 'Kutschenmissionen',
     BoardHeader = 'Kutschenmissionen',
     BoardSubHeader = 'Kutschenmissionen',
+    BoardBlips = 'Kutschenmissionen',
     CloseBoard = 'Schließen',
     DeliverToo = 'Lieferung nach ',
     EndDelivery = 'Lieferung Beenden',

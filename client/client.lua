@@ -13,7 +13,7 @@ Citizen.CreateThread(function()
     local OpenBoardPrompt = BoardPromptGoup:RegisterPrompt(_U('OpenBoardPrompt'), 0x760A9C6F, 1, 1, true, 'hold', {timedeventhash = 'MEDIUM_TIMED_EVENT'})
     for h,v in pairs(Config.MissionBoards) do
         if v.CreateBlip then
-            local bblip = BccUtils.Blips:SetBlip(_U('StartBsBlip'), v.BlipSprite, 2.0, v.Coords.x,v.Coords.y,v.Coords.z)
+            local bblip = BccUtils.Blips:SetBlip(_U('BoardBlips'), v.BlipSprite, 2.0, v.Coords.x,v.Coords.y,v.Coords.z)
             CreatedBoardBlips[#CreatedBoardBlips + 1] = bblip
         end
         if v.CreateNPC then
@@ -26,7 +26,7 @@ Citizen.CreateThread(function()
         end
     end
     while true do
-        Citizen.Wait(3)
+        Citizen.Wait(2)
         for h,v in pairs(Config.MissionBoards) do
         local playerCoords = GetEntityCoords(PlayerPedId())
         local dist = #(playerCoords - v.Coords)
@@ -190,7 +190,7 @@ else
     AddPointToGpsMultiRoute(SelectedMission.DeliverPosition)
     SetGpsMultiRouteRender(true)
     while MissionActive do
-        Citizen.Wait(3)
+        Citizen.Wait(2)
         local MyPosition = GetEntityCoords(MyCart)
         local Distance = #(MyPosition - SelectedMission.DeliverPosition)
         if Distance <= SelectedMission.EndMissionRadius then
