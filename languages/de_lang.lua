@@ -23,4 +23,6 @@ Locales["de_lang"] = {
     FillOil = 'Öl holen',
     OilBoardHeader = 'Ölkutschen Mission',
     OilBoardSubHeader = 'Ölkutschen können Explodieren',
+    FillOilToCart = 'Kutsche Füllen.',
+    FillYourCard = 'Steige ab und Fülle den Wagen',
 }

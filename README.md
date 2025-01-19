@@ -22,6 +22,10 @@
 - Oil Mission Get Money for Both Distance
 - You got to Get Oil (Distance1)
 - You Deliver Oil (Distance2)
+- 1.1.4
+- Manuelly Fill Oil
+- Fixed Horse Movement
+- Added Small Animation
 
 # installation 
 

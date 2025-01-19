@@ -303,12 +303,15 @@ if TravelDistance <= Config.MinimalTravelDistance then
 else
     local MissionPromptGoup = BccUtils.Prompts:SetupPromptGroup()
     local EndMissionPrompt = MissionPromptGoup:RegisterPrompt(_U('EndDelivery'), Config.EndMissionPrompt, 1, 1, true, 'hold', {timedeventhash = 'MEDIUM_TIMED_EVENT'})
+    local FillOilPromptGoup = BccUtils.Prompts:SetupPromptGroup()
+    local FillOilPrompt = FillOilPromptGoup:RegisterPrompt(_U('FillOilToCart'), Config.FillOilPrompt, 1, 1, true, 'hold', {timedeventhash = 'MEDIUM_TIMED_EVENT'})
     MissionActive = true
     if Config.DisableCinematicCamera then
         SetCinematicButtonActive(false)
     end
     local ped = PlayerPedId()
     local TD = 0
+    local FC = 0
     local MyCarthash = 'oilWagon02x'
     Citizen.Wait(500)
     RequestModel(MyCarthash)
@@ -335,17 +338,25 @@ else
             local MyPosition = GetEntityCoords(MyCart)
             local Distance = #(MyPosition - SelectedMission.FillOilPosition)
             if Distance <= SelectedMission.FillOilRadius then
-                FreezeEntityPosition(MyCart,true)
-                Citizen.InvokeNative(0x2A32FAA57B937173,0xEC032ADD,SelectedMission.FillOilPosition.x,SelectedMission.FillOilPosition.y + 1.0,SelectedMission.FillOilPosition.z+1.0,0,0,0,0,0,0,1.0,1.0,1.0,250,250,100,250,0, 0, 2, 0, 0, 0, 0) -- DRAW Marker
-                Progressbar(SelectedMission.FillOilTime * 1000,_U('FillingWagon'))
-                OilFilled = true
-                OilBlip:Remove()
-                FreezeEntityPosition(MyCart,false)
-                VORPcore.NotifyTip(_U('DeliverOil'),5000)
-                DistanceToTravel2 = #(MyPosition - SelectedMission.DeliverPosition)
-                StartGpsMultiRoute(GetHashKey("COLOR_YELLOW"), true, true)
-                AddPointToGpsMultiRoute(SelectedMission.DeliverPosition)
-                SetGpsMultiRouteRender(true)
+                FillOilPromptGoup:ShowGroup(_U('FillOilToCart'))
+                if FC == 0 then
+                    VORPcore.NotifyRightTip(_U('FillYourCard'), 5000)
+                    FC = FC + 1
+                    Citizen.Wait(250)
+                end
+                if FillOilPrompt:HasCompleted() then
+                    Citizen.InvokeNative(0x2A32FAA57B937173,0xEC032ADD,SelectedMission.FillOilPosition.x,SelectedMission.FillOilPosition.y + 1.0,SelectedMission.FillOilPosition.z+1.0,0,0,0,0,0,0,1.0,1.0,1.0,250,250,100,250,0, 0, 2, 0, 0, 0, 0) -- DRAW Marker
+                    CrouchAnim()
+                    Progressbar(SelectedMission.FillOilTime * 1000,_U('FillingWagon'))
+                    OilFilled = true
+                    OilBlip:Remove()
+                    FreezeEntityPosition(MyCart,false)
+                    VORPcore.NotifyTip(_U('DeliverOil'),5000)
+                    DistanceToTravel2 = #(MyPosition - SelectedMission.DeliverPosition)
+                    StartGpsMultiRoute(GetHashKey("COLOR_YELLOW"), true, true)
+                    AddPointToGpsMultiRoute(SelectedMission.DeliverPosition)
+                    SetGpsMultiRouteRender(true)
+                end
             end
         end
     while MissionActive and OilFilled do

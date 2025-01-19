@@ -19,6 +19,7 @@ Config.WHAvatar = '' -- must be 30x30px
 Config.OpenNormalMission = 0x760A9C6F
 Config.EndMissionPrompt = 0x760A9C6F
 Config.OpenOilMissions = 0x27D1C284
+Config.FillOilPrompt = 0x760A9C6F
 
 Config.AbortMissionCommand = 'CancelDelivery'
 Config.MinimalTravelDistance = 50 -- DO NOT Touch
