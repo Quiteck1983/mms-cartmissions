@@ -15,6 +15,13 @@
 - 1.1.0 Initial Release Version
 - 1.1.1 Minor Bug Fixes
 - 1.1.2 Bug Fix
+- 1.1.3 Update
+- Added Oil Missions
+- Fixed Bug in Blackwater
+- Oil Cart can be Destroyed
+- Oil Mission Get Money for Both Distance
+- You got to Get Oil (Distance1)
+- You Deliver Oil (Distance2)
 
 # installation 
 

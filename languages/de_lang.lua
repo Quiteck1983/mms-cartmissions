@@ -1,5 +1,6 @@
 Locales["de_lang"] = {
     OpenBoardPrompt = 'Kutschenmissionen Öffnen',
+    OpenOilBoardPrompt = 'Ölkutschen Missionen',
     OpenBoardPromptName = 'Kutschenmissionen',
     BoardHeader = 'Kutschenmissionen',
     BoardSubHeader = 'Kutschenmissionen',
@@ -16,4 +17,10 @@ Locales["de_lang"] = {
     WHReward = ' Hat eine Mission abgeschlossen und bekommt $ ',
     LocationReached = 'Du hast dein Ziel erreicht gebe die Kutsche ab.',
     NeedMoreDistance = 'Lieferziel zu Nah am Startpunkt',
+    FillWagon = 'Fülle den Wagen mit Öl.',
+    FillingWagon = 'Fülle den Wagen mit Öl.',
+    DeliverOil = 'Liefere das Öl aus.',
+    FillOil = 'Öl holen',
+    OilBoardHeader = 'Ölkutschen Mission',
+    OilBoardSubHeader = 'Ölkutschen können Explodieren',
 }

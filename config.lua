@@ -16,6 +16,10 @@ Config.WHAvatar = '' -- must be 30x30px
 
 -- Script Settings
 
+Config.OpenNormalMission = 0x760A9C6F
+Config.EndMissionPrompt = 0x760A9C6F
+Config.OpenOilMissions = 0x27D1C284
+
 Config.AbortMissionCommand = 'CancelDelivery'
 Config.MinimalTravelDistance = 50 -- DO NOT Touch
 Config.DrawMarker = true -- Draw Marker At location
@@ -57,6 +61,9 @@ Config.MissionBoards = {
         FixReward = false,
         Reward = 15,  --- IF Use Fix Reward
         EndMissionRadius = 10,
+        FillOilPosition = vector3(555.57, 599.92, 111.17),
+        FillOilTime = 10, -- Time in Sec
+        FillOilRadius = 5,
     },
     {
         Name = 'Van Horn',
@@ -74,6 +81,9 @@ Config.MissionBoards = {
         FixReward = false,
         Reward = 15,  --- IF Use Fix Reward
         EndMissionRadius = 10,
+        FillOilPosition = vector3(555.57, 599.92, 111.17),
+        FillOilTime = 10, -- Time in Sec
+        FillOilRadius = 5,
     },
     {
         Name = 'Saint Denis',
@@ -91,6 +101,9 @@ Config.MissionBoards = {
         FixReward = false,
         Reward = 15,  --- IF Use Fix Reward
         EndMissionRadius = 10,
+        FillOilPosition = vector3(555.57, 599.92, 111.17),
+        FillOilTime = 10, -- Time in Sec
+        FillOilRadius = 5,
     },
     {
         Name = 'Rhodes',
@@ -108,6 +121,9 @@ Config.MissionBoards = {
         FixReward = false,
         Reward = 15,  --- IF Use Fix Reward
         EndMissionRadius = 10,
+        FillOilPosition = vector3(555.57, 599.92, 111.17),
+        FillOilTime = 10, -- Time in Sec
+        FillOilRadius = 5,
     },
     {
         Name = 'Bacchus Station',
@@ -125,6 +141,9 @@ Config.MissionBoards = {
         FixReward = false,
         Reward = 15,  --- IF Use Fix Reward
         EndMissionRadius = 10,
+        FillOilPosition = vector3(555.57, 599.92, 111.17),
+        FillOilTime = 10, -- Time in Sec
+        FillOilRadius = 5,
     },
     {
         Name = 'Wapiti',
@@ -142,6 +161,9 @@ Config.MissionBoards = {
         FixReward = false,
         Reward = 15,  --- IF Use Fix Reward
         EndMissionRadius = 10,
+        FillOilPosition = vector3(555.57, 599.92, 111.17),
+        FillOilTime = 10, -- Time in Sec
+        FillOilRadius = 5,
     },
     {
         Name = 'Öl Felder',
@@ -159,6 +181,9 @@ Config.MissionBoards = {
         FixReward = false,
         Reward = 15,  --- IF Use Fix Reward
         EndMissionRadius = 10,
+        FillOilPosition = vector3(555.57, 599.92, 111.17),
+        FillOilTime = 10, -- Time in Sec
+        FillOilRadius = 5,
     },
     {
         Name = 'Valentine',
@@ -176,6 +201,9 @@ Config.MissionBoards = {
         FixReward = false,
         Reward = 15,  --- IF Use Fix Reward
         EndMissionRadius = 10,
+        FillOilPosition = vector3(555.57, 599.92, 111.17),
+        FillOilTime = 10, -- Time in Sec
+        FillOilRadius = 5,
     },
     {
         Name = 'Strawberry',
@@ -193,6 +221,9 @@ Config.MissionBoards = {
         FixReward = false,
         Reward = 15,  --- IF Use Fix Reward
         EndMissionRadius = 10,
+        FillOilPosition = vector3(555.57, 599.92, 111.17),
+        FillOilTime = 10, -- Time in Sec
+        FillOilRadius = 5,
     },
     {
         Name = 'Blackwater',
@@ -204,12 +235,15 @@ Config.MissionBoards = {
         BlipSprite = 'blip_ambient_coach',
         RandomCart = true,
         CartModel = 'coach4', -- Only if RandomCart = false
-        CartSpawn = vector4(-860.61, -1337.29, 42.55, 99.39),
-        DeliverPosition = vector3(-860.61, -1337.29, 42.55),
+        CartSpawn = vector4(-863.62, -1336.88, 42.41, 358.01),
+        DeliverPosition = vector3(-863.62, -1336.88, 42.41),
         RewardPerDistance = 0.035, -- Reward Per meter If Fix Reward is False
         FixReward = false,
         Reward = 15,  --- IF Use Fix Reward
         EndMissionRadius = 10,
+        FillOilPosition = vector3(555.57, 599.92, 111.17),
+        FillOilTime = 10, -- Time in Sec
+        FillOilRadius = 5,
     },
     {
         Name = 'Thieves Landing',
@@ -227,6 +261,9 @@ Config.MissionBoards = {
         FixReward = false,
         Reward = 15,  --- IF Use Fix Reward
         EndMissionRadius = 10,
+        FillOilPosition = vector3(555.57, 599.92, 111.17),
+        FillOilTime = 10, -- Time in Sec
+        FillOilRadius = 5,
     },
     {
         Name = 'McFarlens Ranch',
@@ -244,6 +281,9 @@ Config.MissionBoards = {
         FixReward = false,
         Reward = 15,  --- IF Use Fix Reward
         EndMissionRadius = 10,
+        FillOilPosition = vector3(555.57, 599.92, 111.17),
+        FillOilTime = 10, -- Time in Sec
+        FillOilRadius = 5,
     },
     {
         Name = 'Armadillo',
@@ -261,6 +301,9 @@ Config.MissionBoards = {
         FixReward = false,
         Reward = 15,  --- IF Use Fix Reward
         EndMissionRadius = 10,
+        FillOilPosition = vector3(555.57, 599.92, 111.17),
+        FillOilTime = 10, -- Time in Sec
+        FillOilRadius = 5,
     },
     {
         Name = 'Tumbleweed',
@@ -278,5 +321,8 @@ Config.MissionBoards = {
         FixReward = false,
         Reward = 15,  --- IF Use Fix Reward
         EndMissionRadius = 10,
+        FillOilPosition = vector3(555.57, 599.92, 111.17),
+        FillOilTime = 10, -- Time in Sec
+        FillOilRadius = 5,
     },
 }
