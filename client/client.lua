@@ -163,6 +163,7 @@ else
         SetCinematicButtonActive(false)
     end
     local ped = PlayerPedId()
+    local TD = 0
     local MyCarthash = 'coach4'
     if SelectedMission.RandomCart then
         local MaxCarts = #Config.RandomCarts
@@ -195,7 +196,6 @@ else
         local Distance = #(MyPosition - SelectedMission.DeliverPosition)
         if Distance <= SelectedMission.EndMissionRadius then
             MissionPromptGoup:ShowGroup(_U('DeliveryPromptGroup'))
-            local TD = 0
             if TD == 0 then
                 VORPcore.NotifyRightTip(_U('LocationReached'), 5000)
                 TD = TD + 1

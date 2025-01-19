@@ -14,6 +14,7 @@
 
 - 1.1.0 Initial Release Version
 - 1.1.1 Minor Bug Fixes
+- 1.1.2 Bug Fix
 
 # installation 
 
