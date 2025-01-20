@@ -14,6 +14,9 @@ Citizen.CreateThread(function()
     local BoardPromptGoup = BccUtils.Prompts:SetupPromptGroup()
     local OpenBoardPrompt = BoardPromptGoup:RegisterPrompt(_U('OpenBoardPrompt'), Config.OpenNormalMission, 1, 1, true, 'hold', {timedeventhash = 'MEDIUM_TIMED_EVENT'})
     local OpenOilBoardPrompt = BoardPromptGoup:RegisterPrompt(_U('OpenOilBoardPrompt'), Config.OpenOilMissions, 1, 1, true, 'hold', {timedeventhash = 'MEDIUM_TIMED_EVENT'})
+    local BoardPromptGoup2 = BccUtils.Prompts:SetupPromptGroup()
+    local OpenBoardPrompt = BoardPromptGoup2:RegisterPrompt(_U('OpenBoardPrompt'), Config.OpenNormalMission, 1, 1, true, 'hold', {timedeventhash = 'MEDIUM_TIMED_EVENT'})
+
     for h,v in pairs(Config.MissionBoards) do
         if v.CreateBlip then
             local bblip = BccUtils.Blips:SetBlip(_U('BoardBlips'), v.BlipSprite, 2.0, v.Coords.x,v.Coords.y,v.Coords.z)
@@ -34,17 +37,19 @@ Citizen.CreateThread(function()
         local playerCoords = GetEntityCoords(PlayerPedId())
         local dist = #(playerCoords - v.Coords)
         if dist < 2 then
-            BoardPromptGoup:ShowGroup(_U('OpenBoardPromptName'))
-
+            if v.EnableOilMissions then
+                BoardPromptGoup:ShowGroup(_U('OpenBoardPromptName'))
+            else
+                BoardPromptGoup2:ShowGroup(_U('OpenBoardPromptName'))
+            end
             if OpenBoardPrompt:HasCompleted() then
                 local CurrentCartSpawn = v.CartSpawn
                 TriggerEvent('mms-cartmissions:client:openboard',CurrentCartSpawn)
             end
-
-            if OpenOilBoardPrompt:HasCompleted() then
+            if v.EnableOilMissions and OpenOilBoardPrompt:HasCompleted() then
                 local CurrentCartSpawn = v.CartSpawn
                 TriggerEvent('mms-cartmissions:client:openoilboard',CurrentCartSpawn)
-            end
+            end    
         end
     end
     end
