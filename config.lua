@@ -26,6 +26,13 @@ Config.MinimalTravelDistance = 50 -- DO NOT Touch
 Config.DrawMarker = true -- Draw Marker At location
 Config.DisableCinematicCamera = true
 
+--- Cooldown System
+Config.CooldownMission = true
+Config.CooldownTimet = 10 -- Time in Minute
+
+Config.LimitMissions = true
+Config.MaxMissions = 10  -- Max Missions Per Restart
+
 Config.RandomCarts = { -- Only if RandomCart = true
     { CartModel = 'cart01' },
     { CartModel = 'cart02' },

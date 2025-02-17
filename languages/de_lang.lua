@@ -25,4 +25,7 @@ Locales["de_lang"] = {
     OilBoardSubHeader = 'Ölkutschen können Explodieren',
     FillOilToCart = 'Kutsche Füllen.',
     FillYourCard = 'Steige ab und Fülle den Wagen',
+    CooldownPleaseWait = 'Bitte Warte ',
+    CooldownPleaseWait2 = ' Minuten bis du wieder Fahren kannst.',
+    MaxMissionsReached = 'Maximale Anzahl an Missionen erreicht Probiere es Später nochmal',
 }
