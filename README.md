@@ -28,6 +28,7 @@
 - Added Small Animation
 - 1.1.5 Added Mission Cooldown
 - Added Max Mission Count ( Resets on Server Restart )
+- 1.1.6 Fixed Minor Bug
 
 # installation 
 

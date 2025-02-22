@@ -12,6 +12,7 @@ local MissionActive = false
 local MissionsDone = 0
 local Cooldown = false
 local MaxMissionsDone = false
+local Timer = 0
 
 Citizen.CreateThread(function()
     local BoardPromptGoup = BccUtils.Prompts:SetupPromptGroup()
@@ -133,7 +134,7 @@ AddEventHandler('mms-cartmissions:client:openboard',function(CurrentCartSpawn)
                         VORPcore.NotifyTip(_U('MaxMissionsReached'),5000)
                     end
                 else
-                    local Round = math.floor(Timer / 60000)
+                    local Round = math.floor( Timer / 60000 )
                     VORPcore.NotifyTip(_U('CooldownPleaseWait') .. Round .. _U('CooldownPleaseWait2'),5000)
                 end
             else
@@ -288,7 +289,7 @@ AddEventHandler('mms-cartmissions:client:openoilboard',function(CurrentCartSpawn
                         VORPcore.NotifyTip(_U('MaxMissionsReached'),5000)
                     end
                 else
-                    local Round = math.floor(Timer / 60000)
+                    local Round = math.floor( Timer / 60000)
                     VORPcore.NotifyTip(_U('CooldownPleaseWait') .. Round .. _U('CooldownPleaseWait2'),5000)
                 end
             else
@@ -431,7 +432,7 @@ end)
 
 RegisterNetEvent('mms-cartmissions:client:Cooldown')
 AddEventHandler('mms-cartmissions:client:Cooldown',function()
-    local Timer = Config.CooldownTimet * 60000
+    Timer = Config.CooldownTimet * 60000
     while Cooldown do
         Citizen.Wait(60000)
         Timer = Timer - 60000
