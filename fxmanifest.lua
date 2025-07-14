@@ -27,6 +27,8 @@ shared_scripts {
 
 dependency {
 	'vorp_core',
+	'bcc-utils',
+	'feather-menu'
 }
 
 lua54 'yes'
