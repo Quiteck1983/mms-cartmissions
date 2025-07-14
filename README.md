@@ -36,7 +36,9 @@
 
 # Required
 
-vorp_core
+vorp_core: https://github.com/VORPCORE/vorp_core-lua
+feather-menu: https://github.com/FeatherFramework/feather-menu
+bcc-utils: https://github.com/FeatherFramework/feather-menu
 
 
 # CREDITS
