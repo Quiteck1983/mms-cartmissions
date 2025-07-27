@@ -231,6 +231,9 @@ else
                 Citizen.Wait(500)
                 MissionActive = false
                 TD = 0
+                if Config.DisableCinematicCamera then
+                    SetCinematicButtonActive(true)
+                end
                 TriggerServerEvent('mms-cartmissions:server:EndMission',SelectedMission,DistanceToTravel)
                 if Config.LimitMissions then
                     MissionsDone = MissionsDone + 1
@@ -411,6 +414,9 @@ else
                 Citizen.Wait(500)
                 MissionActive = false
                 TD = 0
+                if Config.DisableCinematicCamera then
+                    SetCinematicButtonActive(true)
+                end
                 TriggerServerEvent('mms-cartmissions:server:EndOilMission',SelectedMission,DistanceToTravel1,DistanceToTravel2)
                 if Config.LimitMissions then
                     MissionsDone = MissionsDone + 1
