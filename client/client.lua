@@ -9,6 +9,10 @@ local CreatedBoardNpcs = {}
 local MainMenuOpened = false
 local OilMenuOpened = false
 local MissionActive = false
+local MissionsDone = 0
+local Cooldown = false
+local MaxMissionsDone = false
+local Timer = 0
 
 Citizen.CreateThread(function()
     local BoardPromptGoup = BccUtils.Prompts:SetupPromptGroup()
@@ -128,7 +132,16 @@ AddEventHandler('mms-cartmissions:client:openboard',function(CurrentCartSpawn)
         }, function()
             CartmissionBoard:Close({})
             if not MissionActive then
-                TriggerEvent('mms-cartmissions:client:StartMission',SelectedMission,CurrentCartSpawn)
+                if not Cooldown then
+                    if not MaxMissionsDone then
+                        TriggerEvent('mms-cartmissions:client:StartMission',SelectedMission,CurrentCartSpawn)
+                    else
+                        VORPcore.NotifyTip(_U('MaxMissionsReached'),5000)
+                    end
+                else
+                    local Round = math.floor( Timer / 60000 )
+                    VORPcore.NotifyTip(_U('CooldownPleaseWait') .. Round .. _U('CooldownPleaseWait2'),5000)
+                end
             else
                 VORPcore.NotifyTip(_U('MissionAlreadyActive'),5000)
             end
@@ -223,7 +236,20 @@ else
                 Citizen.Wait(500)
                 MissionActive = false
                 TD = 0
+                if Config.DisableCinematicCamera then
+                    SetCinematicButtonActive(true)
+                end
                 TriggerServerEvent('mms-cartmissions:server:EndMission',SelectedMission,DistanceToTravel)
+                if Config.LimitMissions then
+                    MissionsDone = MissionsDone + 1
+                    if MissionsDone >= Config.MaxMissions then
+                        MaxMissionsDone = true
+                    end
+                end
+                if Config.CooldownMission then
+                    Cooldown = true
+                    TriggerEvent('mms-cartmissions:client:Cooldown')
+                end
             end
         end
     end
@@ -264,7 +290,16 @@ AddEventHandler('mms-cartmissions:client:openoilboard',function(CurrentCartSpawn
         }, function()
             CartmissionBoard:Close({})
             if not MissionActive then
-                TriggerEvent('mms-cartmissions:client:StartOilMission',SelectedMission,CurrentCartSpawn)
+                if not Cooldown then
+                    if not MaxMissionsDone then
+                        TriggerEvent('mms-cartmissions:client:StartOilMission',SelectedMission,CurrentCartSpawn)
+                    else
+                        VORPcore.NotifyTip(_U('MaxMissionsReached'),5000)
+                    end
+                else
+                    local Round = math.floor( Timer / 60000)
+                    VORPcore.NotifyTip(_U('CooldownPleaseWait') .. Round .. _U('CooldownPleaseWait2'),5000)
+                end
             else
                 VORPcore.NotifyTip(_U('MissionAlreadyActive'),5000)
             end
@@ -384,11 +419,38 @@ else
                 Citizen.Wait(500)
                 MissionActive = false
                 TD = 0
+                if Config.DisableCinematicCamera then
+                    SetCinematicButtonActive(true)
+                end
                 TriggerServerEvent('mms-cartmissions:server:EndOilMission',SelectedMission,DistanceToTravel1,DistanceToTravel2)
+                if Config.LimitMissions then
+                    MissionsDone = MissionsDone + 1
+                    if MissionsDone >= Config.MaxMissions then
+                        MaxMissionsDone = true
+                    end
+                end
+                if Config.CooldownMission then
+                    Cooldown = true
+                    TriggerEvent('mms-cartmissions:client:Cooldown')
+                end
             end
         end
     end
 end
+end)
+
+-- Cooldown
+
+RegisterNetEvent('mms-cartmissions:client:Cooldown')
+AddEventHandler('mms-cartmissions:client:Cooldown',function()
+    Timer = Config.CooldownTimet * 60000
+    while Cooldown do
+        Citizen.Wait(60000)
+        Timer = Timer - 60000
+        if Timer <= 0 then
+            Cooldown = false
+        end
+    end
 end)
 
 RegisterCommand(Config.AbortMissionCommand,function ()

@@ -26,6 +26,9 @@
 - Manuelly Fill Oil
 - Fixed Horse Movement
 - Added Small Animation
+- 1.1.5 Added Mission Cooldown
+- Added Max Mission Count ( Resets on Server Restart )
+- 1.1.6 Fixed Minor Bug
 
 # installation 
 
@@ -33,7 +36,9 @@
 
 # Required
 
-vorp_core
+- vorp_core: https://github.com/VORPCORE/vorp_core-lua
+- feather-menu: https://github.com/FeatherFramework/feather-menu
+- bcc-utils: https://github.com/BryceCanyonCounty/bcc-utils
 
 
 # CREDITS
