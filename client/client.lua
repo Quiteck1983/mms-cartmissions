@@ -26,36 +26,43 @@ Citizen.CreateThread(function()
             local bblip = BccUtils.Blips:SetBlip(_U('BoardBlips'), v.BlipSprite, 2.0, v.Coords.x,v.Coords.y,v.Coords.z)
             CreatedBoardBlips[#CreatedBoardBlips + 1] = bblip
         end
-        if v.CreateNPC then
-            local bped = BccUtils.Ped:Create('A_M_O_SDUpperClass_01', v.Coords.x,v.Coords.y,v.Coords.z, 0, 'world', false)
-            CreatedBoardNpcs[#CreatedBoardNpcs + 1] = bped
-            bped:Freeze()
-            bped:SetHeading(v.NPCHeading)
-            bped:Invincible()
-            SetBlockingOfNonTemporaryEvents(bped:GetPed(), true)
-        end
-    end
+			
     while true do
         Citizen.Wait(2)
-        for h,v in pairs(Config.MissionBoards) do
         local playerCoords = GetEntityCoords(PlayerPedId())
-        local dist = #(playerCoords - v.Coords)
-        if dist < 2 then
-            if v.EnableOilMissions then
-                BoardPromptGoup:ShowGroup(_U('OpenBoardPromptName'))
-            else
-                BoardPromptGoup2:ShowGroup(_U('OpenBoardPromptName'))
+        for h,v in pairs(Config.MissionBoards) do
+            if v.CreateNPC then
+                local dist = #(playerCoords - v.Coords)
+                if dist < 50 and not CreatedBoardNpcs[h] then
+                    local bped = BccUtils.Ped:Create('A_M_O_SDUpperClass_01', v.Coords.x,v.Coords.y,v.Coords.z, 0, 'world', false)
+                    CreatedBoardNpcs[h] = bped
+                    bped:Freeze()
+                    bped:SetHeading(v.NPCHeading)
+                    bped:Invincible()
+                    SetBlockingOfNonTemporaryEvents(bped:GetPed(), true)
+                elseif dist >= 50 and CreatedBoardNpcs[h] then
+                    CreatedBoardNpcs[h]:Remove()
+                    CreatedBoardNpcs[h] = nil
+                end
             end
-            if OpenBoardPrompt:HasCompleted() then
-                local CurrentCartSpawn = v.CartSpawn
-                TriggerEvent('mms-cartmissions:client:openboard',CurrentCartSpawn)
-            end
-            if v.EnableOilMissions and OpenOilBoardPrompt:HasCompleted() then
-                local CurrentCartSpawn = v.CartSpawn
-                TriggerEvent('mms-cartmissions:client:openoilboard',CurrentCartSpawn)
-            end    
         end
-    end
+
+        for h,v in pairs(Config.MissionBoards) do
+            local dist = #(playerCoords - v.Coords)
+            if dist < 2 then
+                BoardPromptGoup:ShowGroup(_U('OpenBoardPromptName'))
+
+                if OpenBoardPrompt:HasCompleted() then
+                    local CurrentCartSpawn = v.CartSpawn
+                    TriggerEvent('mms-cartmissions:client:openboard',CurrentCartSpawn)
+                end
+
+                if OpenOilBoardPrompt:HasCompleted() then
+                    local CurrentCartSpawn = v.CartSpawn
+                    TriggerEvent('mms-cartmissions:client:openoilboard',CurrentCartSpawn)
+                end
+            end
+        end
     end
 end)
 
